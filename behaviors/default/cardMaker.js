@@ -21,7 +21,7 @@ class CardMakerActor {
                 let text = this.createCard({
                     name:'sticky note',
                     className: "TextFieldActor",
-                    translation: [baseX + cos * 2, 0, baseZ + sin * 2],
+                    translation: [baseX + cos * 2, 0.1, baseZ + sin * 2],
                     rotation: [-Math.PI / 2, 0, 0],
                     type: "text",
                     depth: 0.05,
