@@ -39,30 +39,36 @@ class CardMakerActor {
 
     startAnimation() {
         if (this.runner) {
-            this.removeBehaviorModule("Animator");
+            this.runner.destroy();
+            delete this.runner;
+            return;
         }
-        this.addBehaviorModule("Animator");
-        this.call("Animator$AnimatorActor", "setCards", this._cardData.cards);
+        this.runner = this.createCard({
+            type: "object",
+            noSave: true,
+            behaviorModules: ["Animator"],
+            cardIds: this._cardData.cards
+        });
     }
 
     teardown() {
         if (this.runner) {
-            this.removeBehaviorModule("Animator");
+            this.runner.destroy();
+            delete this.runner;
         }
     }
 }
 
 class AnimatorActor {
-    setCards(cardIds) {
-        this.cardIds = cardIds;
+    setup() {
         this.running = true;
         this.step();
     }
 
     step() {
         if (!this.running) {return;}
-        if (!this.cardIds) {return;}
-        this.cardIds.forEach((id) => {
+        if (!this._cardData.cardIds) {return;}
+        this._cardData.cardIds.forEach((id) => {
             let card = this.service("ActorManager").actors.get(id);
             if (!card) {return;}
             card.rotateBy([0, card._cardData.rotationAmount, 0]);
@@ -93,7 +99,7 @@ class StartButtonPawn {
 
         let THREE = Microverse.THREE;
 
-        let geom = new THREE.SphereGeometry(1);
+        let geom = new THREE.SphereGeometry(0.5);
         let mat = new THREE.MeshStandardMaterial({color: this.actor._cardData.color || 0x22dd22, metalness: 0.6});
         this.box = new THREE.Mesh(geom, mat);
         this.shape.add(this.box);

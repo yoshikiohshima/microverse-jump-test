@@ -48,6 +48,14 @@ export function init(Constants) {
         },
         {
             card: {
+                name: "entrance",
+                type: "object",
+                translation: [0, 1.7, 0],
+                spawn: "default",
+            }
+        },
+        {
+            card: {
                 name: "light",
                 layers: ["light"],
                 type: "lighting",
@@ -59,7 +67,7 @@ export function init(Constants) {
         },
         {
             card: {
-                translation: [0, 0, -1],
+                translation: [0, 0, -3],
                 name: "start",
                 type: "object",
                 behaviorModules: ["StartButton"],
