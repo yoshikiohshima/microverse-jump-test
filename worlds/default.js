@@ -57,5 +57,13 @@ export function init(Constants) {
                 dataType: "jpg",
             }
         },
+        {
+            card: {
+                translation: [0, 0, -1],
+                name: "start",
+                type: "object",
+                behaviorModules: ["StartButton"],
+            }
+        },
     ];
 }
