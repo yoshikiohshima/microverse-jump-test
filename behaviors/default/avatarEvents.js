@@ -4,7 +4,6 @@ class AvatarActor {
     }
 
     setAnchor(data) {
-        debugger;
         this._anchor = {
             _cardData: {
                 lookOffset: data.lookOffset || [0, 0, 0],
