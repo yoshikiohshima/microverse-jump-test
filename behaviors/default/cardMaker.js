@@ -19,19 +19,15 @@ class CardMakerActor {
                 let cos = Math.cos((Math.PI  * 2 / 10) * i);
 
                 let text = this.createCard({
-                    name:'sticky note',
-                    className: "TextFieldActor",
                     translation: [baseX + cos * 2, 0.1, baseZ + sin * 2],
                     rotation: [-Math.PI / 2, 0, 0],
-                    type: "text",
+                    type: "2d",
                     depth: 0.05,
-                    margins: {left: 20, top: 20, right: 20, bottom: 20},
-                    backgroundColor: 0xf4e056,
+                    //textureLocation: "./assets/images/fuji.jpg",
                     frameColor: 0xfad912,
-                    runs: [{text: `${j + 1}-${i + 1}`}],
                     width: 0.4,
                     height: 0.4,
-                    textScale: 0.004
+                    behaviorModules: ["Drag"]
                 });
                 this._cardData.cards.push(text.id);
             }

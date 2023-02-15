@@ -23,7 +23,8 @@ export function init(Constants) {
     Constants.UserBehaviorModules = [
         "csmLights.js",
         "avatarEvents.js",
-        "cardMaker.js"
+        "cardMaker.js",
+        "drag.js",
     ];
 
     Constants.ExcludedSystemBehaviorModules = ["avatarEvents.js"];

@@ -1,3 +1,22 @@
+class AvatarActor {
+    setup() {
+        this.listen("setAnchor", "setAnchor");
+    }
+
+    setAnchor(data) {
+        debugger;
+        this._anchor = {
+            _cardData: {
+                lookOffset: data.lookOffset || [0, 0, 0],
+                lookPitch: data.lookPitch || 0,
+                loookYaw: data.lookYaw || 0
+            },
+            translation: data.translation || [0, 0, 0],
+            rotation: data.rotation || [0, 0, 0, 1]
+        }
+    }
+}
+
 class AvatarPawn {
     setup() {
         if (!this.isMyPlayerPawn) {return;}
@@ -32,6 +51,7 @@ class AvatarPawn {
         let search = new URL(window.location).searchParams;
         let user = search.get("user");
         if (user) {
+            console.log(user);
             user = parseInt(user);
             user = user - 1;
             user = Math.min(Math.max(0, user), 9);
@@ -39,9 +59,12 @@ class AvatarPawn {
             let x = ((user % 5) - 2.5) * 10;
             let z = (Math.floor(user / 5) - 1) * 10;
 
-            setTimeout(() => {
-                this.positionTo([x, 5, z], Microverse.q_euler(-Math.PI / 2, 0, 0));
-            }, 500);
+            this.say("setAnchor", {
+                lookPitch: -Math.PI / 2,
+                translation: [x, 5, z],
+                rotation: [0, 0, 0, 1]
+            });
+            setTimeout(() => this.goHome(), 500);
         }
     }
 
@@ -132,6 +155,7 @@ export default {
     modules: [
         {
             name: "AvatarEventHandler",
+            actorBehaviors: [AvatarActor],
             pawnBehaviors: [AvatarPawn],
         },
         {
