@@ -27,7 +27,7 @@ class DragPawn {
 
         let [x,y,z] = newPos;
 
-        this.set({translation: newPos});
+        this.set({translation: newPos}, 40);
     }
 
     pointerDown(evt) {
