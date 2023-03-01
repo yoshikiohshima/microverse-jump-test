@@ -28,7 +28,7 @@ class CardMakerActor {
                     frameColor: 0xfad912,
                     width: 0.4,
                     height: 0.4,
-                    behaviorModules: ["Drag"]
+                    behaviorModules: ["Pickup"]
                 });
                 this._cardData.cards.push(text.id);
             }

@@ -25,6 +25,7 @@ export function init(Constants) {
         "avatarEvents.js",
         "cardMaker.js",
         "drag.js",
+        "pickup.js",
     ];
 
     Constants.ExcludedSystemBehaviorModules = ["avatarEvents.js"];
